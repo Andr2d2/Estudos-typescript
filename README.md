@@ -12,6 +12,8 @@ Todo o código esta no arquivo `app.ts`, para ve-lo funcionando siga os processo
 - [Objeto literal](#Objeto-literal)
 - [Operador spread](#Operador-spread)
 - [Desestruturando array/objeto](#Desestruturando)
+- [Tipos primitivos](#Tipos)
+- [Enum](#Enum)
 
 # Instalação e setup
 
@@ -59,8 +61,9 @@ function multiply(a: number, b = 5) {
 multiply(2)
 multiply(2, 6)
 ```
+
 > Saída:
-```js
+```
 10
 12
 ```
@@ -68,7 +71,6 @@ multiply(2, 6)
 # Objeto literal
 
 Mergeando objetos em um novo.
-
 ```js
 const game = {
     name: 'Ori and the blind forest',
@@ -76,13 +78,11 @@ const game = {
 }
 
 const genres = ['indie', 'metroidvania'];
-
 const order = { game, genres }
 
 ```
 
 > Saída:
-
 ```js
 {
     game:  {
@@ -96,7 +96,6 @@ const order = { game, genres }
 # Operador spread
 
 Concatenando arrays
-
 ```js
 const oldGames = ['Full throttle', 'Grim Fandangos'];
 const newGames = ['Baattlefron 2', 'Ori'];
@@ -106,7 +105,6 @@ console.log(games);
 ```
 
 > Saída:
-
 ```js
 ["Full throttle", "Grim Fandangos", "Baattlefron 2", "Ori"]
 ```
@@ -114,7 +112,6 @@ console.log(games);
 # Desestruturando
 
 Alterando nome de propriedade de objeto
-
 ```js
 const englishData = {
     userName: 'John Connor',
@@ -129,7 +126,6 @@ console.log(translatoToPtBr(englishData));
 ```
 
 > Saída:
-
 ```js
 {
     nome: "John Connor", 
@@ -138,7 +134,6 @@ console.log(translatoToPtBr(englishData));
 ```
 
 Quebrando array em variáveis
-
 ```js
 const fruits = ['maça', 'pera', 'melancia'];
 const [primeiro, segundo, terceiro] = fruits;
@@ -149,11 +144,54 @@ console.log('- terceiro ', terceiro);
 ```
 
 > Saída:
-
-```js
+```
 - primeiro maça
 - segundo segundo
 - terceiro terceiro
+```
+
+# Tipos
+
+Tipos primitivos de dados
+```js
+const texto: string = 'Qual o sentido da vida?';
+const numero: number = 42;
+const verdadeiro: boolean = true;
+```
+
+# Enum
+
+Enumaração
+```js
+enum Semana {
+    DOMINGO,    // 0
+    SEGUNDA,    // 1
+    TERCA,      // ... auto incrementa a partir do primeiro zero
+    QUARTA,
+    QUINTA,
+    SEXTA,
+    SABADO
+};
+
+enum FeedbackStatus {
+    INATIVO = 'Ops, este usuário esta inativo', 
+    ATIVO = 'Usuário ativo'
+};
+
+const numeroPrimeiroDiaUtil: Semana = Semana.SEGUNDA;
+const nomePrimeiroDiaUtil: string = Semana[numeroPrimeiroDiaUtil];
+const mensagem: FeedbackStatus = FeedbackStatus.ATIVO;
+
+console.log(`Número do primeiro dia útil da semana: ${numeroPrimeiroDiaUtil}`);
+console.log(`Primeiro dia útil da semana: ${nomePrimeiroDiaUtil}`);
+console.log(mensagem);
+```
+
+> Saída:
+```
+Número do primeiro dia útil da semana: 1
+Primeiro dia útil da semana: SEGUNDA
+Usuário ativo
 ```
 
 # Resources
