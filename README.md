@@ -20,6 +20,7 @@ TypeScript: Estudos
 - [Parâmetro opcional](#Parâmetro-opcional)
 - [Converção(cast)](#Converção)
 - [Parâmetro Rest](#Parâmetro-Rest)
+- [Interfaces](#Interfaces)
 
 
 # Instalação e setup
@@ -299,6 +300,73 @@ Teste de força: false
 - Total dos dados:  21
 Teste de destreza: true
 ```
+
+
+# Interfaces
+
+```js
+interface Usuario {
+    nome: string,
+    email: string,
+    readonly id: number,    // propriedade apenas leitura
+    idade?: number          // opcional
+};
+
+interface SuperUsuario extends Usuario{
+    poder: string
+}
+
+// instâncias
+const usuario: Usuario = {
+    nome: 'Fernanda',
+    email: 'unicornioscoloridos@email.com',
+    id: 1,
+    idade: 11
+}; 
+
+const admin: SuperUsuario = {
+    nome: 'Chefinho',
+    email: 'ochefe@email.com',
+    id: 0,
+    poder: 'acesso a tudo'
+};
+
+// sem interface como tipo definido
+const alguem: { nome: string, email: string, id: number} = {
+    email: 'desconhecido@email.com',
+    id: 123,
+    nome: 'Ninguém'
+};
+
+function boasVindasSemInterface(usuario: { nome: string, email: string, id: number}): void {
+    console.log(`Bem vindo ${usuario.nome}!`);
+}
+
+function boasVindas(usuario: Usuario): void {
+    console.log(`Bem vindo ${usuario.nome}!`);
+}
+
+function puxarSaco(usuario: SuperUsuario): void {
+    console.log(`${usuario.nome}, você é o melhor!`);
+}
+
+boasVindasSemInterface(usuario);
+boasVindas(usuario);
+boasVindas(admin);
+boasVindas(<Usuario>alguem);
+puxarSaco(admin);
+```
+
+> Saída:
+```
+Bem vindo Fernanda!
+Bem vindo Fernanda!
+Bem vindo Chefinho!
+Bem vindo Ninguém!
+Chefinho, você é o melhor!
+```
+
+
 # Resources
 
 * [TypeScript Docs](https://www.typescriptlang.org)
