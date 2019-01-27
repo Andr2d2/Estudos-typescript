@@ -116,3 +116,73 @@ console.log(`Número do primeiro dia útil da semana: ${numeroPrimeiroDiaUtil}`)
 console.log(`Primeiro dia útil da semana: ${nomePrimeiroDiaUtil}`);
 console.log(mensagem);
 //#endregion
+
+//#region FUNÇÔES TIPADAS
+function sum(valor1: number, valor2: number): number{
+    return valor1 + valor2;
+}
+
+function concat(texto1: string, texto2: string, texto3: string): string{
+    return `${texto1} ${texto2} ${texto3}`;
+}
+
+function printError(error: string): void {
+    console.warn(`Error: "${error}"`);
+}
+
+const valorTotal: number = sum(2,3);
+const frase: string = concat('Come', 'out and', 'play');
+
+console.log(`Valor total: ${valorTotal}`);
+console.log(frase);
+printError('Login inválido');
+//#endregion
+
+
+//#region PARÂMETRO OPCIONAL
+function gerarFicha(forca: number, destreza: number, sorte?: number): void {
+    let ficha = {
+        'Força': forca,
+        'Destreza': destreza,
+        'Sorte': sorte || 0
+    };
+
+    console.table(ficha);
+};
+
+gerarFicha(5, 2, 8);
+gerarFicha(2, 9);
+//#endregion
+
+
+//#region CONVERÇÕES
+const coisa: any = 'coisa';
+const tamanhoDaCoisa: number = (<string>coisa).length;
+const tamanhoDaCoisa2: number = (coisa as string).length;
+const tamanhoDaCoisa3: string = ((coisa as string).length).toString();
+
+console.log('tamanhoDaCoisa', tamanhoDaCoisa);
+console.log('tamanhoDaCoisa2', tamanhoDaCoisa2);
+console.log('tamanhoDaCoisa3', tamanhoDaCoisa3);
+//#endregion
+
+//#region PARÂMETRO REST
+function testeDeAtributo(atributo: number, ...valorDados: number[]): boolean{
+    let total: number = 0;
+
+    for (let i = 0, l= valorDados.length; i < l; i++) {
+        total += valorDados[i];
+    }
+    
+    console.log('Total dos dados: ', total);
+
+    if (total >= atributo) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+console.log(`Teste de força: ${testeDeAtributo(6, 2, 2, 1)}`);
+console.log(`Teste de destreza: ${testeDeAtributo(3, 6, 2, 4, 5, 4)}`);
+//#endregion
