@@ -1,5 +1,7 @@
+var glob = require("glob");
+
 module.exports = {
-    entry: './src/app.ts',
+    entry: glob.sync('./src/**/*.ts'),
     output: {
         filename: 'app.js',
         path: __dirname + './dist'
