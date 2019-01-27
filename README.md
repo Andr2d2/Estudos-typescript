@@ -3,10 +3,10 @@
 TypeScript: Estudos
 </h1>
 
-> Projeto de estudo usando como base os curso:
-- [Ultimate Angular's TypeScript](https://ultimateangular.com/courses/), criado por [Todd Motto](https://toddmotto.com/);
-- vídeo aulas do [DevDojo](https://www.youtube.com/playlist?list=PL62G310vn6nGg5OzjxE8FbYDzCs_UqrUs), criado por William Suane.
-Todo o código esta no arquivo `app.ts`, para ve-lo funcionando siga os processos de instalação abaixo.
+> Projeto de estudo usando como base os cursos:
+> - [Ultimate Angular's TypeScript](https://ultimateangular.com/courses/), criado por [Todd Motto](https://toddmotto.com/);
+> - vídeo aulas do [DevDojo](https://www.youtube.com/playlist?list=PL62G310vn6nGg5OzjxE8FbYDzCs_UqrUs), criado por William Suane.
+> Todo o código esta no arquivo `app.ts`, para ve-lo funcionando siga os processos de instalação abaixo.
 
 # Índice
 - [Instalação e setup](#Instalação-e-setup)
