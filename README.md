@@ -21,6 +21,7 @@ TypeScript: Estudos
 - [Converção(cast)](#Converção)
 - [Parâmetro Rest](#Parâmetro-Rest)
 - [Interfaces](#Interfaces)
+- [Função pura ou impura](#Função-pura-ou-impura)
 
 
 # Instalação e setup
@@ -366,7 +367,47 @@ Bem vindo Ninguém!
 Chefinho, você é o melhor!
 ```
 
+# Função pura ou impura
 
+## Função pura
+Função que o retorno será sempre o mesmo para um dado parâmetro e não causam **side effects**, ou seja, não alteram o estado da aplicação.
+
+```js
+const dataPadraoEua: string = '07/23/1984';
+
+function modificaPadrao(data: string) {
+    let array = data.split('/');
+
+    return `${array[1]}/${array[0]}/${array[2]}`
+}
+
+console.log('Função pura: ', modificaPadrao(dataPadraoEua));
+```
+
+> Saída:
+```
+Função pura: 23/07/1984
+```
+
+## Função impura
+Função que altera o estado da aplicação, desta forma, depende de um fator externo.
+
+```js
+const umObjetoQualquer: any = {};
+
+function setaUmNumero(valor:number) {
+    umObjetoQualquer.numero = valor;    
+}
+
+setaUmNumero(42);
+
+console.log('Função impura: ', umObjetoQualquer);
+```
+
+> Saída:
+```
+Função impura: {numero:42} 
+```
 # Resources
 
 * [TypeScript Docs](https://www.typescriptlang.org)
