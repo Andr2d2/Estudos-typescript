@@ -21,10 +21,14 @@ TypeScript: Estudos
 - [Converção(cast)](#Converção)
 - [Parâmetro Rest](#Parâmetro-Rest)
 - [Interfaces](#Interfaces)
-- [Função pura ou impura](#Função-pura-ou-impura)
+- [Funções](#Funções)
+  - [Função Pura](#Função-pura)
+  - [Função impura](#Função-impura)
 - [Union literal type](#Union-literal-type)
 - [Tipo tupla](#Tipo-tupla)
 - [Tipo alias](#Tipo-alias)
+- [Classes](#Classes)
+  - [Getters/Setters](#Getters-Setters)
 
 
 # Instalação e setup
@@ -53,19 +57,19 @@ TypeScript: Estudos
 # Arrow function
 
 Declaração comum
-```js
+```ts
 pizzas.map((pizza) => {
     return pizza.name.toUpperCase();
 });
 ```
 
 Declaração com retorno implícito
-```js
+```ts
 pizzas.map(pizza => pizza.name.toUpperCase());
 ```
 
 Parâmetro default
-```js
+```ts
 function multiply(a: number, b = 5) {
     return a * b;
 }
@@ -83,7 +87,7 @@ multiply(2, 6)
 # Objeto literal
 
 Mergeando objetos em um novo.
-```js
+```ts
 const game = {
     name: 'Ori and the blind forest',
     price: '13,50'
@@ -95,7 +99,7 @@ const order = { game, genres }
 ```
 
 > Saída:
-```js
+```ts
 {
     game:  {
         name: 'Ori and the blind forest',
@@ -108,7 +112,7 @@ const order = { game, genres }
 # Operador spread
 
 Concatenando arrays
-```js
+```ts
 const oldGames = ['Full throttle', 'Grim Fandangos'];
 const newGames = ['Baattlefron 2', 'Ori'];
 const games = [...oldGames, ...newGames];
@@ -117,14 +121,14 @@ console.log(games);
 ```
 
 > Saída:
-```js
+```ts
 ["Full throttle", "Grim Fandangos", "Baattlefron 2", "Ori"]
 ```
 
 # Desestruturando
 
 Alterando nome de propriedade de objeto
-```js
+```ts
 const englishData = {
     userName: 'John Connor',
     birth: '28/02/1985'
@@ -138,7 +142,7 @@ console.log(translatoToPtBr(englishData));
 ```
 
 > Saída:
-```js
+```ts
 {
     nome: "John Connor", 
     nascimento: "28/02/1985"
@@ -146,7 +150,7 @@ console.log(translatoToPtBr(englishData));
 ```
 
 Quebrando array em variáveis
-```js
+```ts
 const fruits = ['maça', 'pera', 'melancia'];
 const [primeiro, segundo, terceiro] = fruits;
 
@@ -165,7 +169,7 @@ console.log('- terceiro ', terceiro);
 # Tipos
 
 Tipos primitivos de dados
-```js
+```ts
 const texto: string = 'Qual o sentido da vida?';
 const numero: number = 42;
 const verdadeiro: boolean = true;
@@ -174,7 +178,7 @@ const verdadeiro: boolean = true;
 # Enum
 
 Enumaração
-```js
+```ts
 enum Semana {
     DOMINGO,    // 0
     SEGUNDA,    // 1
@@ -209,7 +213,7 @@ Usuário ativo
 # Funções tipadas
 
 Funções com retorno tipado
-```js
+```ts
 function sum(valor1: number, valor2: number): number{
     return valor1 + valor2;
 }
@@ -238,7 +242,7 @@ Come out and play
 ```
 
 # Parâmetro opcional
-```js
+```ts
 function gerarFicha(forca: number, destreza: number, sorte?: number): void {
     let ficha = {
         'Força': forca,
@@ -255,7 +259,7 @@ gerarFicha(2, 9);
 
 # Converção
 
-```js
+```ts
 const coisa: any = 'coisa';
 const tamanhoDaCoisa: number = (<string>coisa).length;
 const tamanhoDaCoisa2: number = (coisa as string).length;
@@ -276,7 +280,7 @@ tamanhoDaCoisa3 5
 # Parâmetro Rest
 
 Reticências indigar que o parâmetro pode receber *x* valores em sequência.
-```js
+```ts
 function testeDeAtributo(atributo: number, ...valorDados: number[]): boolean{
     let total: number = 0;
 
@@ -308,7 +312,7 @@ Teste de destreza: true
 
 # Interfaces
 
-```js
+```ts
 interface Usuario {
     nome: string,
     email: string,
@@ -370,12 +374,12 @@ Bem vindo Ninguém!
 Chefinho, você é o melhor!
 ```
 
-# Função pura ou impura
+# Funções
 
 ## Função pura
 Função que o retorno será sempre o mesmo para um dado parâmetro e não causam **side effects**, ou seja, não alteram o estado da aplicação.
 
-```js
+```ts
 const dataPadraoEua: string = '07/23/1984';
 
 function modificaPadrao(data: string) {
@@ -395,7 +399,7 @@ Função pura: 23/07/1984
 ## Função impura
 Função que altera o estado da aplicação, desta forma, depende de um fator externo.
 
-```js
+```ts
 const umObjetoQualquer: any = {};
 
 function setaUmNumero(valor:number) {
@@ -428,7 +432,7 @@ selecionarClasse('arqueiro');
 Classe selecionada: arqueiro
 ```
 
-#Tipo tupla
+# Tipo tupla
 É possível devinir a estrutura de tipos de um array como se fosse uma tupla de um banco de dados (linha e coluna).
 
 ```ts
@@ -437,7 +441,7 @@ let robot: [number, string, boolean];
 robot = [101, 'CL4PTR3P', true];
 ```
 
-#tipo alias
+# Tipo alias
 ```ts
 type Tamanho = 'P' | 'M' | 'G';
 
@@ -453,6 +457,80 @@ function selecionarTamanho(tamanho: Tamanho): void {
 selecionarTamanho('P');
 ```
 
+# Classes
+```ts
+    readonly hp: number;
+    private _maxHp: number;
+
+    constructor(
+        public nome: string,
+        public classe: string,
+        public forca: number,
+        public destreza: number,
+        public constituicao: number,
+        public sorte: number) {
+        this.nome = nome;
+        this.classe = classe;
+        this.forca = forca;
+        this.destreza = destreza;
+        this.constituicao = constituicao;
+        this.sorte = sorte;
+        this._maxHp = this._calculoHp();
+        this.hp = this._maxHp;
+    }
+
+    private _calculoHp(): number {
+        return this.constituicao + (this.forca / 2);
+    }
+
+    testeAtributo(valorDoDado: number, valorDoAtributo: number): boolean {
+        return valorDoDado >= valorDoAtributo;
+    }
+
+
+    inflingirDano(): number {
+        return this.destreza + this.forca;
+    }
+}
+
+const char = new Personagem('Emmet', 'Arqueiro', 3, 5, 4, 6);
+
+console.log(`Força de ${char.nome}: ${char.forca}`);
+```
+
+> Saída
+```
+Força de Emmet: 3
+```
+
+## Getters Setters
+```ts
+class Carro {
+    private _cor: string = 'branco';
+
+    constructor() { }
+
+    set cor(novaCor: string) {
+        this._cor = novaCor;
+    }
+
+    get cor() {
+        return this._cor;
+    }
+}
+
+const batmovel = new Carro();
+
+console.log(`Cor atual é ${batmovel.cor}`);
+batmovel.cor = 'preto';
+console.log(`Nova cor  é ${batmovel.cor}`);
+```
+
+> Saída
+```
+Cor atual é branco
+Nova cor é preto
+```
 # Resources
 
 * [TypeScript Docs](https://www.typescriptlang.org)
