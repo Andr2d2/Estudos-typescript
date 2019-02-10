@@ -10,21 +10,21 @@ TypeScript: Estudos
 
 # Índice
 - [Instalação e setup](#Instalação-e-setup)
-- [Arrow function](#Arrow-function)
+- [Tipos primitivos](#Tipos-primitivos)
 - [Objeto literal](#Objeto-literal)
+- [Converção(cast)](#Converção)
+- [Arrow function](#Arrow-function)
 - [Operador spread](#Operador-spread)
 - [Desestruturando array/objeto](#Desestruturando)
-- [Tipos primitivos](#Tipos)
 - [Enum](#Enum)
-- [Funções tipadas](#Funções-tipadas)
-- [Parâmetro opcional](#Parâmetro-opcional)
-- [Converção(cast)](#Converção)
-- [Parâmetro Rest](#Parâmetro-Rest)
 - [Interfaces](#Interfaces)
 - [Funções](#Funções)
+  - [Funções tipadas](#Funções-tipadas)
+  - [Parâmetro opcional](#Parâmetro-opcional)
+  - [Parâmetro Rest](#Parâmetro-Rest)
+  - [Union literal type](#Union-literal-type)
   - [Função Pura](#Função-pura)
   - [Função impura](#Função-impura)
-- [Union literal type](#Union-literal-type)
 - [Tipo tupla](#Tipo-tupla)
 - [Tipo alias](#Tipo-alias)
 - [Classes](#Classes)
@@ -53,6 +53,59 @@ TypeScript: Estudos
 
 >*Opcional* Instalação global do TypeScript via `npm i -g typescript`:
 
+# Tipos primitivos
+
+Tipos primitivos de dados
+```ts
+const texto: string = 'Qual o sentido da vida?';
+const numero: number = 42;
+const verdadeiro: boolean = true;
+```
+
+# Objeto literal
+
+Mergeando objetos em um novo.
+```ts
+const game = {
+    name: 'Ori and the blind forest',
+    price: '13,50'
+}
+
+const genres = ['indie', 'metroidvania'];
+const order = { game, genres }
+
+```
+
+> Saída:
+```ts
+{
+    game:  {
+        name: 'Ori and the blind forest',
+        price: '13,50'
+    },
+    genres: ['indie', 'metroidvania']
+}
+```
+
+# Converção
+
+```ts
+const coisa: any = 'coisa';
+const tamanhoDaCoisa: number = (<string>coisa).length;
+const tamanhoDaCoisa2: number = (coisa as string).length;
+const tamanhoDaCoisa3: string = ((coisa as string).length).toString();
+
+console.log('tamanhoDaCoisa', tamanhoDaCoisa);
+console.log('tamanhoDaCoisa2', tamanhoDaCoisa2);
+console.log('tamanhoDaCoisa3', tamanhoDaCoisa3);
+```
+
+> Saída:
+```
+tamanhoDaCoisa 5
+tamanhoDaCoisa2 5
+tamanhoDaCoisa3 5
+```
 
 # Arrow function
 
@@ -84,30 +137,7 @@ multiply(2, 6)
 12
 ```
 
-# Objeto literal
 
-Mergeando objetos em um novo.
-```ts
-const game = {
-    name: 'Ori and the blind forest',
-    price: '13,50'
-}
-
-const genres = ['indie', 'metroidvania'];
-const order = { game, genres }
-
-```
-
-> Saída:
-```ts
-{
-    game:  {
-        name: 'Ori and the blind forest',
-        price: '13,50'
-    },
-    genres: ['indie', 'metroidvania']
-}
-```
 
 # Operador spread
 
@@ -166,14 +196,6 @@ console.log('- terceiro ', terceiro);
 - terceiro terceiro
 ```
 
-# Tipos
-
-Tipos primitivos de dados
-```ts
-const texto: string = 'Qual o sentido da vida?';
-const numero: number = 42;
-const verdadeiro: boolean = true;
-```
 
 # Enum
 
@@ -209,106 +231,6 @@ Número do primeiro dia útil da semana: 1
 Primeiro dia útil da semana: SEGUNDA
 Usuário ativo
 ```
-
-# Funções tipadas
-
-Funções com retorno tipado
-```ts
-function sum(valor1: number, valor2: number): number{
-    return valor1 + valor2;
-}
-
-function concat(texto1: string, texto2: string, texto3: string): string{
-    return `${texto1} ${texto2} ${texto3}`;
-}
-
-function printError(error: string): void {
-    console.warn(`Error: "${error}"`);
-}
-
-const valorTotal: number = sum(2,3);
-const frase: string = concat('Come', 'out and', 'play');
-
-console.log(`Valor total: ${valorTotal}`);
-console.log(frase);
-printError('Login inválido');
-```
-
-> Saída:
-```
-Valor total: 5
-Come out and play
-"Login inválido"
-```
-
-# Parâmetro opcional
-```ts
-function gerarFicha(forca: number, destreza: number, sorte?: number): void {
-    let ficha = {
-        'Força': forca,
-        'Destreza': destreza,
-        'Sorte': sorte || 0
-    };
-
-    console.table(ficha);
-};
-
-gerarFicha(5, 2, 8);
-gerarFicha(2, 9);
-```
-
-# Converção
-
-```ts
-const coisa: any = 'coisa';
-const tamanhoDaCoisa: number = (<string>coisa).length;
-const tamanhoDaCoisa2: number = (coisa as string).length;
-const tamanhoDaCoisa3: string = ((coisa as string).length).toString();
-
-console.log('tamanhoDaCoisa', tamanhoDaCoisa);
-console.log('tamanhoDaCoisa2', tamanhoDaCoisa2);
-console.log('tamanhoDaCoisa3', tamanhoDaCoisa3);
-```
-
-> Saída:
-```
-tamanhoDaCoisa 5
-tamanhoDaCoisa2 5
-tamanhoDaCoisa3 5
-```
-
-# Parâmetro Rest
-
-Reticências indigar que o parâmetro pode receber *x* valores em sequência.
-```ts
-function testeDeAtributo(atributo: number, ...valorDados: number[]): boolean{
-    let total: number = 0;
-
-    for (let i = 0, l= valorDados.length; i < l; i++) {
-        total += valorDados[i];
-    }
-    
-    console.log('- Total dos dados: ', total);
-
-    if (total >= atributo) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-console.log(`Teste de força: ${testeDeAtributo(6, 2, 2, 1)}`);
-console.log(`Teste de destreza: ${testeDeAtributo(3, 6, 2, 4, 5, 4)}`);
-```
-
-> Saída:
-```
-- Total dos dados:  5
-Teste de força: false
-- Total dos dados:  21
-Teste de destreza: true
-```
-
 
 # Interfaces
 
@@ -375,6 +297,99 @@ Chefinho, você é o melhor!
 ```
 
 # Funções
+
+## Funções tipadas
+
+Funções com retorno tipado
+```ts
+function sum(valor1: number, valor2: number): number{
+    return valor1 + valor2;
+}
+
+function concat(texto1: string, texto2: string, texto3: string): string{
+    return `${texto1} ${texto2} ${texto3}`;
+}
+
+function printError(error: string): void {
+    console.warn(`Error: "${error}"`);
+}
+
+const valorTotal: number = sum(2,3);
+const frase: string = concat('Come', 'out and', 'play');
+
+console.log(`Valor total: ${valorTotal}`);
+console.log(frase);
+printError('Login inválido');
+```
+
+> Saída:
+```
+Valor total: 5
+Come out and play
+"Login inválido"
+```
+
+## Parâmetro opcional
+```ts
+function gerarFicha(forca: number, destreza: number, sorte?: number): void {
+    let ficha = {
+        'Força': forca,
+        'Destreza': destreza,
+        'Sorte': sorte || 0
+    };
+
+    console.table(ficha);
+};
+
+gerarFicha(5, 2, 8);
+gerarFicha(2, 9);
+```
+
+## Parâmetro Rest
+Reticências indigar que o parâmetro pode receber *x* valores em sequência.
+```ts
+function testeDeAtributo(atributo: number, ...valorDados: number[]): boolean{
+    let total: number = 0;
+
+    for (let i = 0, l= valorDados.length; i < l; i++) {
+        total += valorDados[i];
+    }
+    
+    console.log('- Total dos dados: ', total);
+
+    if (total >= atributo) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+console.log(`Teste de força: ${testeDeAtributo(6, 2, 2, 1)}`);
+console.log(`Teste de destreza: ${testeDeAtributo(3, 6, 2, 4, 5, 4)}`);
+```
+
+> Saída:
+```
+- Total dos dados:  5
+Teste de força: false
+- Total dos dados:  21
+Teste de destreza: true
+```
+
+## Union literal type
+```ts
+let algumaCoisa: number | string | Object;
+
+function selecionarClasse(classe: 'arqueiro' | 'mago' | 'ladino'): void {
+    console.log('Classe selecionada: ', classe);
+}
+selecionarClasse('arqueiro');
+```
+
+> Saída:
+```
+Classe selecionada: arqueiro
+```
 
 ## Função pura
 Função que o retorno será sempre o mesmo para um dado parâmetro e não causam **side effects**, ou seja, não alteram o estado da aplicação.
@@ -531,6 +546,7 @@ console.log(`Nova cor  é ${batmovel.cor}`);
 Cor atual é branco
 Nova cor é preto
 ```
+
 # Resources
 
 * [TypeScript Docs](https://www.typescriptlang.org)
