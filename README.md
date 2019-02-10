@@ -22,6 +22,9 @@ TypeScript: Estudos
 - [Parâmetro Rest](#Parâmetro-Rest)
 - [Interfaces](#Interfaces)
 - [Função pura ou impura](#Função-pura-ou-impura)
+- [Union literal type](#Union-literal-type)
+- [Tipo tupla](#Tipo-tupla)
+- [Tipo alias](#Tipo-alias)
 
 
 # Instalação e setup
@@ -408,6 +411,48 @@ console.log('Função impura: ', umObjetoQualquer);
 ```
 Função impura: {numero:42} 
 ```
+
+#Union literal type
+```ts
+let algumaCoisa: number | string | Object;
+
+function selecionarClasse(classe: 'arqueiro' | 'mago' | 'ladino'): void {
+    console.log('Classe selecionada: ', classe);
+}
+
+selecionarClasse('arqueiro');
+```
+
+> Saída:
+```
+Classe selecionada: arqueiro
+```
+
+#Tipo tupla
+É possível devinir a estrutura de tipos de um array como se fosse uma tupla de um banco de dados (linha e coluna).
+
+```ts
+let robot: [number, string, boolean];
+
+robot = [101, 'CL4PTR3P', true];
+```
+
+#tipo alias
+```ts
+type Tamanho = 'P' | 'M' | 'G';
+
+let camisa = {
+    cor: 'roxo',
+    tamanho: ''
+};
+
+function selecionarTamanho(tamanho: Tamanho): void {
+    camisa.tamanho = tamanho;
+}
+
+selecionarTamanho('P');
+```
+
 # Resources
 
 * [TypeScript Docs](https://www.typescriptlang.org)
