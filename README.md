@@ -29,6 +29,7 @@ TypeScript: Estudos
 - [Tipo alias](#Tipo-alias)
 - [Classes](#Classes)
   - [Getters/Setters](#Getters-Setters)
+  - [Herança](#Herança)
 
 
 # Instalação e setup
@@ -545,6 +546,56 @@ console.log(`Nova cor  é ${batmovel.cor}`);
 ```
 Cor atual é branco
 Nova cor é preto
+```
+
+## Herança
+```ts
+class Veiculo {
+    constructor(public portas: number, public rodas: number) { }
+}
+
+class Monomotor extends Veiculo {
+    constructor() {
+        super(2, 5)
+    }
+
+    voar() {
+        console.log('Voando...');
+    }
+}
+
+class Barco extends Veiculo {
+    constructor() {
+        super(0, 0);
+    }
+
+    navegar() {
+        console.log('Navegando...');
+    }
+}
+
+const aviazinho = new Monomotor();
+console.log('aviazinho');
+aviazinho.voar();
+console.log('Portas: ', aviazinho.portas);
+console.log('Rodas: ', aviazinho.rodas);
+
+const barco = new Barco();
+console.log('barco');
+barco.navegar();
+console.log('Portas: ', barco.portas);
+console.log('Rodas: ', barco.rodas);
+```
+
+> Saída
+```
+aviazinho
+Portas: 2
+Rodas: 5
+
+barco
+Portas: 0
+Rodas: 0
 ```
 
 # Resources
