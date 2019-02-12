@@ -30,6 +30,7 @@ TypeScript: Estudos
 - [Classes](#Classes)
   - [Getters/Setters](#Getters-Setters)
   - [Herança](#Herança)
+  - [Classe abstrata](#Classe-abstrata)
 
 
 # Instalação e setup
@@ -596,6 +597,44 @@ Rodas: 5
 barco
 Portas: 0
 Rodas: 0
+```
+
+
+## Classe-abstrata
+```ts
+abstract class SerHumano {
+    constructor() { }
+
+    // declaração de métodos
+    abstract pensar(): void;
+    abstract acreditar(): void;
+}
+
+
+class Eu extends SerHumano {
+    constructor() {
+        super();
+    }
+
+    // implementação
+    pensar(): void {
+        console.log('Pensando...');
+    }
+
+    acreditar(): void {
+        console.log('Acreditar...');
+    }
+}
+
+
+new Eu().pensar();
+new Eu().acreditar();
+```
+
+> Saída
+```
+Pensando...
+Acreditar...
 ```
 
 # Resources
