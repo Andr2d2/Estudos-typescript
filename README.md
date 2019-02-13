@@ -663,6 +663,10 @@ class Api implements IContratoApi {
 new Api('www.minhaapi.com/api/produto', '7856422135431').post(123);
 ```
 
+> Saída
+```
+Post para www.minhaapi.com/api/produto com 7856422135431 usando 123
+```
 # Resources
 
 * [TypeScript Docs](https://www.typescriptlang.org)
